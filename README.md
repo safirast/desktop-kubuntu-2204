@@ -39,6 +39,7 @@ setopt SHARE_HISTORY          # compartilhar dados do histórico de comandos
 EOF
 ```
 ## WARP \- Best Terminal \=\)
+Use este link para a inscrição\: [https\:\/\/app\.warp\.dev\/referral\/R5KZKY](https://app.warp.dev/referral/R5KZKY)
 ```warp-runnable-command
 sudo apt-get install wget gpg curl
 wget -qO- https://releases.warp.dev/linux/keys/warp.asc | gpg --dearmor > warpdotdev.gpg
