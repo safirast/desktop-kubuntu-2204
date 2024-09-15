@@ -102,6 +102,31 @@ az bicep install
 
 # Verificar a instalação do Bicep
 az bicep version
+
+# Instalar o Azcopy
+sudo apt install azcopy
+```
+Autocomplete do Azcopy para ZSH
+```warp-runnable-command
+# Diretório customizado do Oh My Zsh para armazenar plugins
+ZSH_CUSTOM_DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
+
+# Diretório para o plugin do azcopy
+PLUGIN_DIR="$ZSH_CUSTOM_DIR/plugins/azcopy"
+
+# Cria o diretório se não existir
+mkdir -p "$PLUGIN_DIR"
+
+# Gera o arquivo de completions para o azcopy
+azcopy completion zsh > "$PLUGIN_DIR/azcopy.plugin.zsh"
+
+# Adiciona o plugin ao .zshrc se ainda não estiver adicionado
+if ! grep -q "plugins=(.*azcopy" ~/.zshrc; then
+    sed -i 's/plugins=(/plugins=(azcopy /' ~/.zshrc
+fi
+
+# Recarrega o .zshrc
+source ~/.zshrc
 ```
 ## Kubectl
 ```warp-runnable-command
@@ -126,6 +151,39 @@ wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/sha
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
 sudo apt update
 sudo apt install terraform 
+```
+### Terraform\-Docs
+Não existe um repositório oficial do Terraform Docs\, portanto criei um público\:
+```warp-runnable-command
+# Adicionar o repositório do mantenedor
+curl -1sLf \
+  'https://dl.cloudsmith.io/public/danielgines/devops-tools/setup.deb.sh' \
+  | sudo -E bash
+
+# Instalar o pacote
+sudo apt install terraform-docs
+```
+Autocomplete do Terraform Docs para ZSH
+```warp-runnable-command
+# Diretório customizado do Oh My Zsh para armazenar plugins
+ZSH_CUSTOM_DIR=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
+
+# Diretório para o plugin do terraform-docs
+PLUGIN_DIR="$ZSH_CUSTOM_DIR/plugins/terraform-docs"
+
+# Cria o diretório se não existir
+mkdir -p "$PLUGIN_DIR"
+
+# Gera o arquivo de completions para o terraform-docs
+terraform-docs completion zsh > "$PLUGIN_DIR/terraform-docs.plugin.zsh"
+
+# Adiciona o plugin ao .zshrc se ainda não estiver adicionado
+if ! grep -q "plugins=(.*terraform-docs" ~/.zshrc; then
+    sed -i 's/plugins=(/plugins=(terraform-docs /' ~/.zshrc
+fi
+
+# Recarrega o .zshrc
+source ~/.zshrc
 ```
 ## Github
 ```warp-runnable-command
